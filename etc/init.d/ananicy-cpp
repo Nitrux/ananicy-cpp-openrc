@@ -1,0 +1,36 @@
+#!/sbin/openrc-run
+
+description="Ananicy-Cpp - ANother Auto NICe daemon in C++"
+
+depend() { 
+    need localmount
+    after autocpuset
+}
+
+start_pre() { 
+    mkdir -p /var/log
+}
+
+start() {
+  ebegin "Starting ananicy-cpp"
+  supervise-daemon ananicy-cpp --respawn --respawn-delay 10 --nice -5 \
+    --stdout /var/log/ananicy-cpp.log --stderr /var/log/ananicy-cpp.log -- \
+    /usr/bin/ananicy-cpp start
+  eend $?
+}
+
+stop() {
+  ebegin "Stopping ananicy-cpp"
+  supervise-daemon ananicy-cpp --signal TERM
+  eend $?
+}
+
+reload() {
+  ebegin "Reloading ananicy-cpp"
+  /usr/bin/ananicy-cpp --reload
+  eend $?
+}
+
+status() {
+  supervise-daemon ananicy-cpp --status
+}
