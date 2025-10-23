@@ -1,3 +1,9 @@
+ananicy-cpp-openrc (0.0.2)  nitrux; urgency=medium
+
+  * Use correct and idiomatic syntax to start an executable as a daemon when it has no fork or background flags.
+
+ -- Uri Herrera <uri_herrera@nxos.org>  Thu, 23 Oct 2025 17:19:00 -0500
+
 ananicy-cpp-openrc (0.0.1)  nitrux; urgency=medium
 
   * Create package.
